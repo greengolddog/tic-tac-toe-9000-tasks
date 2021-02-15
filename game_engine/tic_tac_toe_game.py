@@ -1,5 +1,5 @@
 from copy import deepcopy
-from tic_tac_toe_common_lib import *
+from .tic_tac_toe_common_lib import *
 
 
 class TicTacToeGame(AbstractTicTacToeGame):

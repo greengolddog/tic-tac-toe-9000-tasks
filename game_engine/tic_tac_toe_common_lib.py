@@ -19,13 +19,6 @@ class TicTacToeGameInfo:
     second_player_id: str
     winner_id: str # а какие могут быть варианты?
 
-
-@dataclass
-class UserInfo:
-    user_id: str
-    secret_key: str
-
-
 class AbstractTicTacToeGame(ABC):
     @abstractmethod
     def __init__(

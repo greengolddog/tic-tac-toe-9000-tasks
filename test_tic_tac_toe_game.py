@@ -58,7 +58,6 @@ def test_scenario():
         second_player_id="Vasya",
         winner_id=""
     )
-
     assert game.do_turn(
         TicTacToeTurn(
             player_id="Petya",

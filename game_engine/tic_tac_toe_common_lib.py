@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, abstractproperty
 from typing import List, Callable
 from dataclasses import dataclass
 
@@ -18,7 +18,6 @@ class TicTacToeGameInfo:
     first_player_id: str
     second_player_id: str
     winner_id: str # а какие могут быть варианты?
-
 
 class AbstractTicTacToeGame(ABC):
     @abstractmethod
@@ -43,4 +42,3 @@ class AbstractTicTacToeGame(ABC):
     @abstractmethod
     def get_game_info(self) -> TicTacToeGameInfo:
         """обычный геттер"""
-

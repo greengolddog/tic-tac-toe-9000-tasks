@@ -1,6 +1,5 @@
 from game_engine import TicTacToeGame, TicTacToeGameInfo, TicTacToeTurn
 
-
 def test_scenario():
     game = TicTacToeGame(
         game_id="0001",
@@ -59,7 +58,6 @@ def test_scenario():
         second_player_id="Vasya",
         winner_id=""
     )
-
     assert game.do_turn(
         TicTacToeTurn(
             player_id="Petya",

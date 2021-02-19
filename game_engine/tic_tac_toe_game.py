@@ -1,6 +1,6 @@
 from copy import deepcopy
 from .tic_tac_toe_common_lib import AbstractTicTacToeGame, TicTacToeGameInfo, TicTacToeTurn
-from typing import Callable
+from typing import Callable, List
 
 
 class TicTacToeGame(AbstractTicTacToeGame):
@@ -13,7 +13,7 @@ class TicTacToeGame(AbstractTicTacToeGame):
         self.strategy = strategy
         self.winner_id = ''
         self.field = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-        self.sequence_of_turns = list()
+        self.sequence_of_turns: List[TicTacToeTurn] = list()
 
     def winner(self) -> str:
         c = 0

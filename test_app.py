@@ -4,7 +4,7 @@ from game_engine import TicTacToeGameInfo, TicTacToeTurn
 def test_1():
     app = TicTacToeApp()
     game_id_PV = app.start_game("Petya", "Vasya").game_id
-    assert len(str(game_id_PV)) > 30
+    assert len(game_id_PV) > 30
     assert app.get_game_by_id(game_id_PV) == TicTacToeGameInfo(
         game_id = game_id_PV,
         field=[
@@ -19,14 +19,14 @@ def test_1():
     )
     game_id_PV2 = app.start_game("Petya2", "Vasya2").game_id
     assert game_id_PV2 != game_id_PV
-    assert len(str(game_id_PV2)) > 30
+    assert len(game_id_PV2) > 30
     arr = list()
     arr.append(game_id_PV)
     arr.append(game_id_PV2)
     game_id_now =' '
     for i in range(1000):
         game_id_now = app.start_game("Petya", "Vasya").game_id
-        assert len(str(game_id_now)) > 30
+        assert len(game_id_now) > 30
         for j in arr:
             assert game_id_now != j
         arr.append(game_id_now)

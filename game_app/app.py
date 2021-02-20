@@ -11,7 +11,7 @@ class TicTacToeApp:
         self._games: Dict[str, TicTacToeGame] = {}
 
     def start_game(self, first_player_id: str, second_player_id: str) -> TicTacToeGameInfo:
-        game_id = uuid4()
+        game_id = str(uuid4())
         self._games[game_id] = TicTacToeGame(\
         game_id, first_player_id, second_player_id)
         return self._games[game_id].get_game_info()

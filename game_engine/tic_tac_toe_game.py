@@ -28,7 +28,7 @@ class TicTacToeGame(AbstractTicTacToeGame):
                 if self.field[i][j] == 'X':
                     bee_x = 1
                 if self.field[i][j] == 'O':
-                    bee_o = List[TicTacToeTurn]
+                    bee_o = 1
             if bee_r == 1:
                 if first_in_row == 'X':
                     return self.first_player_id

@@ -12,8 +12,11 @@ class TicTacToeApp:
 
     def start_game(self, first_player_id: str, second_player_id: str) -> TicTacToeGameInfo:
         game_id = str(uuid4())
-        self._games[game_id] = TicTacToeGame(\
-        game_id, first_player_id, second_player_id)
+        self._games[game_id] = TicTacToeGame(
+            game_id, 
+            first_player_id, 
+            second_player_id
+        )
         return self._games[game_id].get_game_info()
 
     def get_game_by_id(self, game_id: str) -> TicTacToeGameInfo:

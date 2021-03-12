@@ -42,7 +42,9 @@
 {
   "user_name": "Vasya",
   "user_id" : "af056ec7-4f62-4a38-b860-076d5b5d7ea4",
-  "token": "9a5adaf4-9353-4d28-b1e7-f4c8753dea10"
+  "token": "9a5adaf4-9353-4d28-b1e7-f4c8753dea10",
+  "x": 0,
+  "y": 0
 }
 ```
 если не авторизован то 401
@@ -51,11 +53,17 @@
 {
     "game_id": 1,
     "field": [
-        [" ", " ", " "],
+        ["X", " ", " "],
         [" ", " ", " "],
         [" ", " ", " "]
     ],
-    "sequence_of_turns": [],
+    "sequence_of_turns": [
+      {
+        "user_id": "af056ec7-4f62-4a38-b860-076d5b5d7ea4",
+        "x": 0,
+        "y": 0
+      }
+    ],
     "first_player_id": "af056ec7-4f62-4a38-b860-076d5b5d7ea4",
     "second_player_id": "20",
     "winner_id": ""
@@ -65,7 +73,6 @@
 **request:**
 ```json
 {
-  "user_name": "Vasya",
   "user_id" : "af056ec7-4f62-4a38-b860-076d5b5d7ea4",
   "token": "9a5adaf4-9353-4d28-b1e7-f4c8753dea10",
   "user_id2" : "20"
@@ -91,7 +98,6 @@
 **request:**
 ```json
 {
-  "user_name": "Piter",
   "user_id" : "20",
   "token": "145"
 }
@@ -101,30 +107,5 @@
 ```json
 {
     "games_id": [100, 1]
-}
-```
-### POST: /api/continue_game?game_id=1
-**request:**
-```json
-{
-  "user_name": "Piter",
-  "user_id" : "20",
-  "token": "145"
-}
-```
-если не авторизован то 401
-**response**
-```json
-{
-    "game_id": 1,
-    "field": [
-        [" ", " ", " "],
-        [" ", " ", " "],
-        [" ", " ", " "]
-    ],
-    "sequence_of_turns": [],
-    "first_player_id": "af056ec7-4f62-4a38-b860-076d5b5d7ea4",
-    "second_player_id": "20",
-    "winner_id": ""
 }
 ```

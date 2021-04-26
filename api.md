@@ -1,6 +1,6 @@
 # API
 
-### GET: /api/game_info?game_id=1&user_id=10
+### GET: /api/game_info?game_id=1
 Что делать, если этот пользователь не играет в эту игру?
 
 **response:**

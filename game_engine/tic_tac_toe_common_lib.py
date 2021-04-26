@@ -1,15 +1,16 @@
 from abc import ABC, abstractmethod, abstractproperty
 from typing import List, Callable
 from dataclasses import dataclass
+from dataclasses_json import dataclass_json
 
-
+@dataclass_json
 @dataclass
 class TicTacToeTurn:
     player_id: str
     x_coordinate: int
     y_coordinate: int
 
-
+@dataclass_json
 @dataclass
 class TicTacToeGameInfo:
     game_id: str

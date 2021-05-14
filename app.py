@@ -47,10 +47,10 @@ def get_game_info():
         game = t_app.get_game_by_id(game_id)
         game.first_player_id = tokens2[game.first_player_id]
         game.second_player_id = tokens2[game.second_player_id]
-        return t_app.get_game_by_id(game_id)
+        return t_app.get_game_by_id(game_id).to_dict()
     abort(400)
 
-@app.route("/sing_up", methods=["POST"])
+@app.route("/sign_up", methods=["POST"])
 def sing_up():
     person = Person.from_dict(request.json).name
     token = str(uuid4())
@@ -61,15 +61,15 @@ def sing_up():
         names[person] = [token]
     else:
         names[person].append(token)
-    return ["your token: "+token, "you secret token: "+token2]
+    return {"token":token, "secret_token":token2}
 
 @app.route("/get_persons", methods=["GET"])
-def per():
+def pers():
     name = request.args.get('name')
     if name:
         if (names.get(name, 555) == 555):
             return "There is no users with this name"
-        return names[name]
+        return {"names":names[name]}
     abort(400)
 
 @app.route("/do_turn", methods=["POST"])
@@ -77,12 +77,14 @@ def do_turn():
     game_id = request.args.get('game_id')
     if game_id:
         turn = TicTacToeTurn.from_dict(request.json)
+        turn.x_coordinate = int(turn.x_coordinate)
+        turn.y_coordinate = int(turn.y_coordinate)
         if (t_app.get_game_by_id(game_id) == "None"):
             abort(404)
         game = t_app.do_turn(turn, game_id)
         game.first_player_id = tokens2[game.first_player_id]
         game.second_player_id = tokens2[game.second_player_id]
-        return game
+        return game.to_dict()
     abort(400)
 
 @app.route("/my_games", methods=["GET"])
@@ -91,16 +93,26 @@ def my_games():
     if token:
         if (tokens.get(token, 0) == 0):
             abort(404)
-        return t_app.all_games_of_user(tokens[token])
+        return {"games":t_app.all_games_of_user(tokens[token])}
     abort(400)
+
 @app.route("/start_game", methods=["POST"])
 def start():
     players = per.from_dict(request.json)
-    if (tokens.get(player.n1, 0) == 0):
+    if (tokens.get(players.n1, 0) == 0):
         abort(404)
-    if (tokens.get(player.n2, 0) == 0):
+    if (tokens.get(players.n2, 0) == 0):
         abort(404)
-    game = t_app.start_game(token[player.n1], token[player.n2])
-    game.first_player_id = player.n1
-    game.second_player_id = player.n2
-    return game
+    game = t_app.start_game(tokens[players.n1], tokens[players.n2])
+    game.first_player_id = players.n1
+    game.second_player_id = players.n2
+    return game.to_dict()
+
+@app.route("/my_public_key", methods=["GET"])
+def my_public():
+    token = request.args.get('token')
+    if token:
+        if (tokens2.get(token, 0) == 0):
+            abort(404)
+        return tokens2[token]
+    abort(400)
